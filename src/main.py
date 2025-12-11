@@ -22,7 +22,6 @@ def main():
     init_db()
     db = next(get_db())
 
-    # 1. Додаємо дані для цікавішої статистики (через try/except щоб не дублювати)
     try:
         seed_extra_data(db)
         print("--- Extra data seeded ---")
