@@ -9,7 +9,7 @@ class Course(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(200), nullable=False)
     description = Column(Text)
-    price = Column(Integer, default=0)
+    price = Column(Integer, default=0, index=True)
     instructor_id = Column(Integer, ForeignKey("users.id"))
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     
