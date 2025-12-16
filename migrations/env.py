@@ -15,6 +15,9 @@ config = context.config
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
+section = config.config_ini_section
+config.set_section_option(section, "sqlalchemy.url", os.environ.get("DATABASE_URL"))
+
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 

@@ -42,6 +42,8 @@ def main():
     print("\n=== 2. ANALYTICS: Student Performance ===")
     stats = services.get_student_average_scores(db)
     for name, avg, count in stats:
+        if avg is None:
+            avg = 0.0
         print(f"Student: {name} | Average: {avg:.1f} | Works: {count}")
 
     print("\n=== 3. ANALYTICS: Instructor Revenue ===")
