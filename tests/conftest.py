@@ -6,14 +6,14 @@ from sqlalchemy.orm import sessionmaker
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../src")))
 
-from database import Base, SQLALCHEMY_DATABASE_URL
-from models import User, Course, Enrollment
+from models import Base, User, Course, Enrollment, Module, Assignment, Submission
+from database import SQLALCHEMY_DATABASE_URL
 
 @pytest.fixture(scope="function")
 def db_session():
     engine = create_engine(SQLALCHEMY_DATABASE_URL)
     TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    
+    Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
     
     session = TestingSessionLocal()
@@ -21,5 +21,3 @@ def db_session():
     yield session
     
     session.close()
-    
-    Base.metadata.drop_all(bind=engine)
