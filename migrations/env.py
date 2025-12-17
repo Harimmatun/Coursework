@@ -6,6 +6,11 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
+from dotenv import load_dotenv
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+env_path = os.path.join(current_dir, "..", ".env")
+load_dotenv(env_path)
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'src'))
 from models import Base
