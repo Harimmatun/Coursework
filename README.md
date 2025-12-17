@@ -155,11 +155,11 @@ CourseWork/
 
 ### 1. Головна панель керування
 Тут доступний повний список ендпоінтів для керування користувачами, курсами та оцінками.
-![Головна панель Swagger](docs/images/swagger_overview.png)
+![Головна панель Swagger](docs/image/swagger_overview.png)
 
 ### 2. Отримання списку курсів
 Приклад `GET` запиту з фільтрацією за ціною (від 0 до 2000).
 * **URL:** `/courses/?min_price=0&max_price=2000`
 
 **Відповідь сервера (JSON):**
-![Список курсів](docs/images/get_courses.png)
+![Список курсів](docs/image/get_courses.png)
