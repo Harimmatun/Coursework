@@ -17,11 +17,22 @@ templates = Jinja2Templates(directory="src/templates")
 @app.get("/", response_class=HTMLResponse)
 def read_root(request: Request, db: Session = Depends(get_db)):
     courses = services.get_courses_by_price_range(db, 0, 100000)
-    return templates.TemplateResponse("index.html", {"request": request, "courses": courses})
+    return templates.TemplateResponse(request=request, name="index.html", context={"courses": courses})
 
 @app.get("/courses/", response_model=List[schemas.CourseResponse])
 def get_courses(min_price: int = 0, max_price: int = 100000, db: Session = Depends(get_db)):
     return services.get_courses_by_price_range(db, min_price, max_price)
+
+@app.post("/courses/", response_model=schemas.CourseResponse, status_code=status.HTTP_201_CREATED)
+def create_course(course: schemas.CourseCreate, db: Session = Depends(get_db)):
+    instructor_id = 1 
+    return services.create_course_with_modules(
+        db, 
+        instructor_id, 
+        course.title, 
+        course.price, 
+        []
+    )
 
 @app.post("/users/", response_model=schemas.UserResponse, status_code=status.HTTP_201_CREATED)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):

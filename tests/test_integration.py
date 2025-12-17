@@ -54,5 +54,5 @@ def test_grade_validation_error(db_session):
     
     assert result is None
     
-    saved_submission = db_session.query(Submission).get(submission.id)
+    saved_submission = db_session.get(Submission, submission.id)
     assert saved_submission.score is None

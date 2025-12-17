@@ -1,8 +1,13 @@
 from database import engine, Base, get_db
 from models import UserRole, User, Course
+from models.lms import Enrollment, Assignment, Submission 
+from models.course import Module
 import services
 
 def main():
+    print("Creating tables in the database...")
+    Base.metadata.create_all(bind=engine)
+    print("Tables created successfully!")
     db = next(get_db())
     print("--- DATA CHECK ---")
 
