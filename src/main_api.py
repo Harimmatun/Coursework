@@ -12,7 +12,9 @@ from models import UserRole
 
 app = FastAPI(title="LMS API System")
 
-templates = Jinja2Templates(directory="src/templates")
+
+base_dir = os.path.dirname(os.path.abspath(__file__))
+templates = Jinja2Templates(directory=os.path.join(base_dir, "templates"))
 
 @app.get("/", response_class=HTMLResponse)
 def read_root(request: Request, db: Session = Depends(get_db)):
